@@ -12,3 +12,22 @@ def test_dividir_numeros_negativos():
     assert dividir(-6, 3) == -2.0
     assert dividir(6, -3) == -2.0
     assert dividir(-6, -3) == 2.0
+
+# === 2. PRUEBAS DE CASOS LÍMITE (EDGE CASES) ===
+def test_dividir_por_cero():
+    # Validamos que efectivamente el sistema lance la excepción correcta
+    with pytest.raises(ValueError, match="No se puede dividir por cero."):
+        dividir(10, 0)
+
+def test_dividir_con_cero_en_dividendo():
+    assert dividir(0, 5) == 0.0
+
+
+# === 3. PRUEBAS DE ROBUSTEZ (MANEJO DE ERRORES DE USUARIO) ===
+def test_dividir_con_argumentos_no_numericos():
+    # Validamos que el sistema no intente procesar textos
+    with pytest.raises(TypeError, match="Ambos argumentos deben ser números"):
+        dividir("10", 2)
+    
+    with pytest.raises(TypeError, match="Ambos argumentos deben ser números"):
+        dividir(10, "2")
